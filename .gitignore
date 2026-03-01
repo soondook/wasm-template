@@ -1,0 +1,21 @@
+## Ignore build outputs
+bin/
+obj/
+publish/
+
+## Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Rider
+.idea/
+
+## OS generated
+.DS_Store
+Thumbs.db
+
+## Logs
+*.log
