@@ -1,4 +1,5 @@
 # WASM Template — публикация на GitHub Pages
+**Live demo:** https://soondook.github.io/wasm-template/
 
 Короткое руководство как превратить этот Blazor WebAssembly проект в простой шаблон (skill) и публиковать его на GitHub Pages.
 
