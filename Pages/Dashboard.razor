@@ -1,0 +1,65 @@
+@page "/dashboard"
+@inject AuthService Auth
+@inject NavigationManager Nav
+
+<PageTitle>Dashboard</PageTitle>
+
+@if (_isLoading)
+{
+    <div class="d-flex justify-content-center mt-5">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+}
+else
+{
+    <div class="dashboard-container">
+        <h1>Dashboard</h1>
+        <p class="lead">Welcome, <strong>@_currentUser</strong>! You are logged in.</p>
+
+        <div class="row mt-4">
+            <div class="col-md-4 mb-3">
+                <div class="card border-primary">
+                    <div class="card-body">
+                        <h5 class="card-title">Protected Content</h5>
+                        <p class="card-text">This page is only accessible to authenticated users.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card border-success">
+                    <div class="card-body">
+                        <h5 class="card-title">Session Info</h5>
+                        <p class="card-text">Your session is stored in <code>localStorage</code> and persists across browser sessions.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card border-info">
+                    <div class="card-body">
+                        <h5 class="card-title">Blazor WASM</h5>
+                        <p class="card-text">This is a static client-side application deployed on GitHub Pages.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private bool _isLoading = true;
+    private string? _currentUser;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!await Auth.IsAuthenticatedAsync())
+        {
+            Nav.NavigateTo("/login");
+            return;
+        }
+
+        _currentUser = await Auth.GetCurrentUserAsync();
+        _isLoading = false;
+    }
+}

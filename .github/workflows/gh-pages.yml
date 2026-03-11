@@ -16,10 +16,10 @@ jobs:
         dotnet-version: '9.0.x'
 
     - name: Restore
-      run: dotnet restore
+      run: dotnet restore wasm-template.sln
 
     - name: Publish
-      run: dotnet publish -c Release -o publish
+      run: dotnet publish wasm-template.sln -c Release -o publish
 
     - name: Update base href for GitHub Pages
       run: |
